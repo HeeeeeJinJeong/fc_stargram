@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 from django.shortcuts import redirect
+from django.conf import settings
+from django.conf.urls.static import static
 
-from contents.views import HomeView
+from contents.views import HomeView, RelationView
 
 class NonUserTemplateView(TemplateView):
     def dispatch(self, request, *args, **kwargs):
@@ -32,4 +34,14 @@ urlpatterns = [
     path('', HomeView.as_view(), name='contents_home'),
     path('login/', TemplateView.as_view(template_name='login.html'), name='login'),
     path('register/', TemplateView.as_view(template_name='register.html'), name='register'),
+    path('relation/', RelationView.as_view(), name='contents_relation'),
 ]
+
+from django.conf import settings
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

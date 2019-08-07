@@ -21,15 +21,14 @@
     </div>
 </nav>
 
-<script
-        src="https://code.jquery.com/jquery-3.4.1.min.js"
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/dropzone@5.5.1/dist/dropzone.min.js"></script>
 
 <br>
 <div id="formContainer">
-    <form action="{% url 'apis_v1_content_create' %}" class="dropzone" id="uploader"
+    <form action="{ % url 'apis_v1_content_create' %}" class="dropzone" id="uploader"
           style="background-color:whitesmoke;">
         <div class="dz-message" data-dz-message><span>드래그 드랍하거나 클릭하여 이미지 선택</span></div>
         <div class="fallback">
