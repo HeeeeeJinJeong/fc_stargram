@@ -1,23 +1,18 @@
 {% extends 'base.html' %}
 {% block body %}
-<div class="row">
-    <div class="col"></div>
-    <div class="col-12">
-        <nav class="fast-nav navbar navbar-expand-lg navbar-light bg-white">
-            <a class="navbar-brand text-danger col-sm-8" href="{% url 'contents_home' %}"><b>Fastgram</b></a>
-            <div class="collapse navbar-collapse col-sm-4" id="navbarText">
+<nav class="fast-nav navbar navbar-expand-lg navbar-light bg-white">
+    <a class="navbar-brand text-danger col-sm-8" href="{% url 'contents_home' %}"><b>Fastgram</b></a>
+    <div class="collapse navbar-collapse col-sm-4" id="navbarText"
+         style="display: inline-block !important; text-align: right;">
     <span class="navbar-text col-sm-3">
       {{ request.user }}
     </span>
-                <span class="navbar-text col-sm-4">
+        <span class="navbar-text col-sm-3">
       <a href="{% url 'contents_relation' %}">친구목록</a>
     </span>
-                <span class="navbar-text col-sm-4">
+        <span class="navbar-text col-sm-3">
       <a href="javascript:void(0);" id="logout">로그아웃</a>
     </span>
-            </div>
-        </nav>
     </div>
-    <div class="col"></div>
-</div>
+</nav>
 {% endblock %}

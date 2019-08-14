@@ -1,4 +1,5 @@
 body {
+    color: black; !important;
     background-color: #fafafa !important;
 }
 .content {
@@ -10,6 +11,7 @@ body {
     background-color: #fff;
 }
 .content .left-things {
+    color: black;
     text-align: left;
 }
 .content .post .img-info {

@@ -1,8 +1,7 @@
 from django.urls import path
 
 from .views import (
-    UserCreateView, UserLoginView, UserLogoutView,
-    ContentCreateView, RelationCreateView, RelationDeleteView,
+    UserCreateView, UserLoginView, UserLogoutView, ContentCreateView, RelationCreateView, RelationDeleteView,
     UserGetView
 )
 

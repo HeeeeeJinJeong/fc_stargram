@@ -1,12 +1,21 @@
-from django.shortcuts import render
-
-# Create your views here.
 from django.views.generic.base import TemplateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.db.models import Prefetch
+from django.views.generic.list import ListView
 
 from contents.models import Content, FollowRelation
+
+
+class ContentList(ListView):
+    model = Content
+    template_name = 'content_list.html'
+
+    def get_queryset(self):
+        user = self.request.user
+        queryset = user.photos.all()
+        return queryset
+
 
 @method_decorator(login_required, name='dispatch')
 class HomeView(TemplateView):
@@ -28,6 +37,7 @@ class HomeView(TemplateView):
 
 @method_decorator(login_required, name='dispatch')
 class RelationView(TemplateView):
+
     template_name = 'relation.html'
 
     def get_context_data(self, **kwargs):
@@ -40,10 +50,10 @@ class RelationView(TemplateView):
             followers = FollowRelation.objects.get(follower=user).followee.all()
             context['followees'] = followers
             context['followees_ids'] = list(followers.values_list('id', flat=True))
-
+            
         except FollowRelation.DoesNotExist:
             pass
 
         context['followers'] = FollowRelation.objects.select_related('follower').filter(followee__in=[user])
-
+        
         return context

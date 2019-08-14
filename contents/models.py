@@ -2,9 +2,9 @@ import os
 import uuid
 
 from django.db import models
-
-# Create your models here.
 from django.contrib.auth.models import User
+
+
 
 class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -15,7 +15,7 @@ class BaseModel(models.Model):
 
 
 class Content(BaseModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='photos')
     text = models.TextField(default='')
 
     class Meta:
