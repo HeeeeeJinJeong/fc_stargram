@@ -18,9 +18,9 @@ from django.urls import include, path
 from django.views.generic import TemplateView
 from django.shortcuts import redirect
 from django.conf import settings
-#from django.conf.urls.static import static
+from django.conf.urls.static import static
 
-from contents.views import HomeView, RelationView, ContentList
+from contents.views import HomeView, RelationView
 
 
 admin.site.site_header = "Fastgram Admin"
@@ -41,11 +41,10 @@ urlpatterns = [
     path('login/', NonUserTemplateView.as_view(template_name='login.html'), name='login'),
     path('register/', NonUserTemplateView.as_view(template_name='register.html'), name='register'),
     path('relation/', RelationView.as_view(), name='contents_relation'),
-    path('mylist/', ContentList.as_view(), name='my_list'),
     path('apis/', include('apis.urls')),
 ]
 
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns += [path('__debug__/', include(debug_toolbar.urls))]
-    #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

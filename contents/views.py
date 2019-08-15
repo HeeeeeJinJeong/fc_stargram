@@ -1,20 +1,8 @@
 from django.views.generic.base import TemplateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from django.db.models import Prefetch
-from django.views.generic.list import ListView
 
 from contents.models import Content, FollowRelation
-
-
-class ContentList(ListView):
-    model = Content
-    template_name = 'content_list.html'
-
-    def get_queryset(self):
-        user = self.request.user
-        queryset = user.photos.all()
-        return queryset
 
 
 @method_decorator(login_required, name='dispatch')
