@@ -1,6 +1,8 @@
 # Instagram cloning Project
 배포 사이트 : http://heejinnnni.pythonanywhere.com/
 
+<hr>
+
 # 연습내용
 ### django
 - 다양한 모델 관계 이용 ( 1:1, 1:N, M:N )
