@@ -1,7 +1,5 @@
-## Instagram cloning Project
-
-# 배포 사이트
-- http://heejinnnni.pythonanywhere.com/
+# Instagram cloning Project
+배포 사이트 : http://heejinnnni.pythonanywhere.com/
 
 # 연습내용
 ### django
