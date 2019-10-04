@@ -1,4 +1,6 @@
-{% include "header.html" %}
+{% extends "base.html" %}
+
+
 {% block head %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropzone@5.5.1/dist/dropzone.min.css">
 {% endblock %}
@@ -6,52 +8,52 @@
 {% block body %}
 <div class="row">
     <div class="col"></div>
-    <div class="col-6 text-center float-center">
-        <div class="all" style="margin-left: 100px;">
-            <h2 class="mb-4 mt-3">사용자 찾기</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{request.user}}</h5>
+            <p class="card-text">
+            </p>
             <input type="text" id="searchUserName" placeholder="유저이름을 입력해주세요.">
             <button id="search" class="btn-outline-danger">검색</button>
-            <p><b id="searchResult"></b><span id="searchFollow" style="display: none;"> - <button></button></span></p>
-            <hr>
-
-            <h2>날 팔로우 하는 사람들</h2>
-            {% if followers %}
-            <ul class="list-group">
-                {% for obj in followers %}
-                <li class="list-group-item">
-                    {{ obj.follower.username }}{% if obj.follower.id not in followees_ids %} -
-                    <button class="follow btn btn-outline-danger" data-user-id="{{ obj.follower.id }}">팔로우</button>
-                    {% endif %}
-                </li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-
-            <hr>
-
-            <h2>내가 팔로우 하는 사람들</h2>
-            {% if followees %}
-            <ul class="list-group">
-                {% for user in followees %}
-                <li class="list-group-item">{{ user.username }} -
-                    <button class="unfollow btn btn-outline-danger" data-user-id="{{ user.id }}">언팔로우</button>
-                </li>
-                {% endfor %}
-            </ul>
-            {% endif %}
+            <p><b id="searchResult"></b><span id="searchFollow" style="display: none;"> - <button class='follow btn btn-outline-danger'></button></span></p>
         </div>
+    </div>
+
+    <div class="list-group-flush mb-5 text-center ml-2 mr-2" style="width: 18rem;">
+        <div class="card-header">
+            Follower
+        </div>
+        {% if followers %}
+        {% for obj in followers %}
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                {{ obj.follower.username }}{% if obj.follower.id not in followees_ids %} -
+                <button class="follow btn btn-outline-success" data-user-id="{{ obj.follower.id }}">팔로우</button>
+                {% endif %}
+            </li>
+        </ul>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="list-group-flush text-center" style="width: 18rem;">
+        <div class="card-header">
+            Following
+        </div>
+        {% if followees %}
+        {% for user in followees %}
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                {{ user.username }} -
+                <button class="unfollow btn btn-outline-danger" data-user-id="{{ user.id }}">언팔로우</button>
+            </li>
+        </ul>
+        {% endfor %}
+        {% endif %}
     </div>
     <div class="col"></div>
 </div>
-
-<script
-        src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        crossorigin="anonymous"></script>
-
-
 <script>
-
 $(document).ready(function(){
 
   $('#logout').click(function () {
@@ -107,6 +109,15 @@ $(document).ready(function(){
 
 
 
-</script>
 
+
+
+
+
+
+
+
+
+
+</script>
 {% endblock %}

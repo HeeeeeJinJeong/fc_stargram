@@ -5,16 +5,6 @@
 {% endblock %}
 
 {% block body %}
-<nav class="fast-nav navbar navbar-expand-lg navbar-light bg-white">
-    <a class="navbar-brand text-danger col-sm-7" href="{% url 'contents_home' %}"><b>Fastgram</b></a>
-    <div class="collapse navbar-collapse col-sm-5" id="navbarText"
-         style="display: inline-block !important; text-align: right;">
-        <span class="navbar-text col-sm-3">{{ request.user }}</span>
-        <span class="navbar-text col-sm-3"><a href="{% url 'contents_relation' %}">친구목록</a></span>
-        <span class="navbar-text col-sm-3"><a href="javascript:void(0);" id="logout">로그아웃</a></span>
-    </div>
-</nav>
-
 <script
         src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -22,22 +12,28 @@
 <script src="https://cdn.jsdelivr.net/npm/dropzone@5.5.1/dist/dropzone.min.js"></script>
 
 <br>
-<div id="formContainer">
-    <form action="{% url 'apis_v1_content_create' %}" class="dropzone" id="uploader"
-          style="background-color:whitesmoke;">
-        <div class="dz-message" data-dz-message><span>드래그 드랍하거나 클릭하여 이미지 선택</span></div>
-        <div class="fallback">
-            <input name="file" type="file"/>
-        </div>
-    </form>
-    <div class="form-group">
-        <label>아래에 글을 입력해주세요.</label>
-        <textarea class="form-control rounded-0" id="text" rows="3"></textarea>
-    </div>
+<div class="row">
+    <div class="col"></div>
+    <div class="col-9">
+        <div id="formContainer">
+            <form action="{% url 'apis_v1_content_create' %}" class="dropzone" id="uploader"
+                  style="background-color:whitesmoke;">
+                <div class="dz-message" data-dz-message><span>드래그 드랍하거나 클릭하여 이미지 선택</span></div>
+                <div class="fallback">
+                    <input name="file" type="file"/>
+                </div>
+            </form>
+            <div class="form-group">
+                <label>아래에 글을 입력해주세요.</label>
+                <textarea class="form-control rounded-0" id="text" rows="3"></textarea>
+            </div>
 
-    <div style="text-align: right;">
-        <button type="button" class="btn btn-danger" id="upload">작성하기</button>
+            <div style="text-align: right;">
+                <button type="button" class="btn btn-danger" id="upload">작성하기</button>
+            </div>
+        </div>
     </div>
+    <div class="col"></div>
 </div>
 
 {% for content in contents %}
@@ -46,7 +42,7 @@
     <div class="post">
         <div class="text-center user-block">
             <h5 class="left-things ml-3 mt-2 mb-2">{{ content.user.username }}</h5>
-            <img class="img-info img-circle img-bordered-sm" src="{{ image.image.url }}" alt="User Image">
+            <img class="w-75 img-info img-circle img-bordered-sm" src="{{ image.image.url }}" alt="User Image">
             {% endfor %}
             <div>
           <span class="username left-things">
@@ -110,6 +106,8 @@ $('#logout').click(function () {
     });
 });
 });
+
+
 
 
 
